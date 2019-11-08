@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+    <script type="application/javascript">
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawCurveTypes);
+
+        function drawCurveTypes() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'aplicaciones');
+            data.addColumn('number', 'AppStore');
+            data.addColumn('number', 'PlayStore');
+
+            data.addRows([
+                ['Book', 2.99, 2.99],
+                ['Social Networking', 2.99, 2.99],
+                ['Utilities', 3.99, 3.99],
+                ['Food & Drink', 4.99, 4.99],
+                ['Education', 2.99, 3.99],
+                ['Entertainment', 3.99, 4.99],
+                ['Health & Fitness ', 6.99, 6.99],
+                ['Catalogs', 7.99, 7.99],
+                ['Games', 14.99, 9.99],
+                ['Medical ', 19.99, 24.99]
+            ]);
+
+            var options = {
+                hAxis: {
+                    title: 'Categorias',
+                    titleTextStyle: {
+                        color: '#000000',
+                        bold: true,
+                        fontSize: 20
+                    }
+                },
+                vAxis: {
+                    title: 'Precio',
+                    scaleType: 'log',
+                    minValue: 0,
+                    maxValue: 30,
+                    format: '##,##%',
+                    gridlines: {count: 6},
+                    /*minorGridlines: {color: 'yellow'},*/
+                    titleTextStyle: {
+                        color: '#000000',
+                        bold: true,
+                        fontSize: 20
+                    }
+                },
+
+
+                series: {
+                    0: {curveType: 'function', color: '#0067a3', visibleInLegend: true},
+                    1: {curveType: 'function', color: '#b21313', visibleInLegend: true},
+                },
+
+
+                width: 1200,
+                height: 500,
+                legend: {position: 'bottom'},
+                pointSize: 5,
+                trendlines: {
+                    0: {
+                        type: 'exponential',
+                        visibleInLegend: true,
+                    }
+                },
+
+                annotations: {
+                    textStyle: {
+                        fontName: 'Times-Roman',
+                        fontSize: 8,
+                        bold: true,
+                        italic: true,
+                        // The color of the text.
+                        color: '#871b47',
+                        // The color of the text outline.
+                        auraColor: '#d799ae',
+                        // The transparency of the text.
+                        opacity: 0.8
+                    }
+                },
+
+            };
+
+            function makeApiCall() {
+                //alert('aaa');
+                $("circle[cy$='166.53461010166404']").hide();
+            }
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options, makeApiCall());
+
+        }
+    </script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<div id="chart_div"></div>
+<input type="button" id="btn" value="imagen"/>
+
+
+<body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btn").click(function () {
+            alert('aaa');
+            $("circle[cy$='166.53461010166404']").hide()
+            $("<g><circle cx=\"978.5\" cy=\"166.53461010166404\" r=\"6\" stroke=\"#b21313\" stroke-width=\"1\" fill=\"#ffffff\"></circle><circle cx=\"978.5\" cy=\"166.53461010166404\" r=\"3.5\" stroke=\"none\" stroke-width=\"0\" fill=\"#b21313\"></circle></g>").insertAfter("circle[cy$='166.53461010166404']");
+            //$("circle[cy$='166.53461010166404']").replaceWith("<g><circle cx=\"978.5\" cy=\"166.53461010166404\" r=\"6\" stroke=\"#b21313\" stroke-width=\"1\" fill=\"#ffffff\"></circle><circle cx=\"978.5\" cy=\"166.53461010166404\" r=\"3.5\" stroke=\"none\" stroke-width=\"0\" fill=\"#b21313\"></circle></g>");
+        });
+    });
+
+</script>
+</body>
+</html>
